@@ -54,11 +54,11 @@ public class Checkout {
     private static Map<Character, Integer> translateReceipt(Map<Character, Integer> receipt) {
         Map<Character, Integer> result = new HashMap<>();
 
-        Integer countA = receipt.get('A');
+        Integer countA = nvl(receipt.get('A'));
         result.put('a', countA / 3);
         result.put('A', countA % 3);
 
-        Integer countB = receipt.get('B');
+        Integer countB = nvl(receipt.get('B'));
         result.put('b', countB / 2);
         result.put('B', countB % 2);
 

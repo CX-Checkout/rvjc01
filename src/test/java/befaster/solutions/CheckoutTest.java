@@ -21,4 +21,14 @@ public class CheckoutTest {
     public void withSpecialOffersTest() {
         assertThat(Checkout.checkout("AAABBB"), equalTo(130 + 45 + 30));
     }
+
+    @Test
+    public void emptyReceiptTest() {
+        assertThat(Checkout.checkout(""), equalTo(0));
+    }
+
+    @Test
+    public void simpleTest() {
+        assertThat(Checkout.checkout("C"), equalTo(20));
+    }
 }
