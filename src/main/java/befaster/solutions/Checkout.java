@@ -62,9 +62,16 @@ public class Checkout {
         result.put('b', countB / 2);
         result.put('B', countB % 2);
 
-        result.put('C', receipt.get('C'));
-        result.put('D', receipt.get('D'));
+        result.put('C', nvl(receipt.get('C')));
+        result.put('D', nvl(receipt.get('D')));
 
         return result;
+    }
+
+    private static int nvl(Integer val) {
+        if (val == null) {
+            return 0;
+        }
+        return val;
     }
 }
