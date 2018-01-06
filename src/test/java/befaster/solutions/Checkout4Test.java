@@ -32,7 +32,7 @@ public class Checkout4Test {
         assertThat(Checkout.checkout("PPPPPQQQ"), equalTo(200 + 80));
         assertThat(Checkout.checkout("QQQRRR"), equalTo(50*3 + 30*2));
         assertThat(Checkout.checkout("UUUU"), equalTo(40*3));
-        assertThat(Checkout.checkout("VVVVVV"), equalTo(130 + 90 + 50));
+        assertThat(Checkout.checkout("VVVVVV"), equalTo(130 + 130));
 
     }
 
