@@ -23,6 +23,8 @@ public class Checkout3Test {
         assertThat(Checkout.checkout("AAABBB"), equalTo(130 + 45 + 30));
         assertThat(Checkout.checkout("AAAAAAAAABBB"), equalTo(200 + 130 + 50 + 45 + 30));
         assertThat(Checkout.checkout("BBBBEEE"), equalTo(45 + 30 + 40*3));
+        assertThat(Checkout.checkout("FFFFF"), equalTo(40));
+        assertThat(Checkout.checkout("FFFFFF"), equalTo(40));
     }
 
     @Test

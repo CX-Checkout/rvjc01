@@ -64,6 +64,7 @@ public class Checkout {
         Integer countC = nvl(receipt.get("C"));
         Integer countD = nvl(receipt.get("D"));
         Integer countE = nvl(receipt.get("E"));
+        Integer countF = nvl(receipt.get("F"));
 
         result.put("5A", countA / 5);
         countA = countA % 5;
@@ -78,7 +79,10 @@ public class Checkout {
         result.put("C", countC);
         result.put("D", countD);
 
-        result.put("E", nvl(receipt.get("E")));
+        result.put("E", countE);
+
+        result.put("3F", countF / 3);
+        result.put("F", countF % 3);
 
         return result;
     }
