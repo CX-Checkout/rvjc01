@@ -18,11 +18,39 @@ public class Checkout {
         prices.put("D", 15);
         prices.put("E", 40);
         prices.put("F", 10);
+        prices.put("G", 20);
+        prices.put("H", 10);
+        prices.put("I", 35);
+        prices.put("J", 60);
+        prices.put("K", 80);
+        prices.put("L", 90);
+        prices.put("M", 15);
+        prices.put("N", 40);
+        prices.put("O", 10);
+        prices.put("P", 50);
+        prices.put("Q", 30);
+        prices.put("R", 50);
+        prices.put("S", 30);
+        prices.put("T", 20);
+        prices.put("U", 40);
+        prices.put("V", 50);
+        prices.put("W", 20);
+        prices.put("X", 90);
+        prices.put("Y", 10);
+        prices.put("Z", 50);
         //special stocks
         prices.put("3A", 130);
         prices.put("5A", 200);
         prices.put("2B", 45);
         prices.put("3F", 20);
+        prices.put("5H", 45);
+        prices.put("10H", 80);
+        prices.put("2K", 150);
+        prices.put("5P", 200);
+        prices.put("3Q", 80);
+        prices.put("4U", 120);
+        prices.put("2V", 90);
+        prices.put("3V", 130);
     }
 
     public static Integer checkout(String skus) {
