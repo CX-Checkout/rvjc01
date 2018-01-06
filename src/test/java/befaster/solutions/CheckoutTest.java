@@ -10,6 +10,7 @@ public class CheckoutTest {
     @Test
     public void negativeTest() {
         assertThat(Checkout.checkout("ABEAA"), equalTo(-1));
+        assertThat(Checkout.checkout("a"), equalTo(-1));
     }
 
     @Test
