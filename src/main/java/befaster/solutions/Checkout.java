@@ -87,12 +87,32 @@ public class Checkout {
     private static Map<String, Integer> translateReceipt(Map<String, Integer> receipt) {
         Map<String, Integer> result = new HashMap<>();
 
+        String alphabet = "ABCDEFGHIJKLNMOPQRSTUVWXYZ";
+        Map<String, Integer> positionsAndCounts = new HashMap<>();
+        for (char ch : alphabet.toCharArray()) {
+            String sku = String.valueOf(ch);
+            int count = nvl(receipt.get(sku));
+            switch (sku) {
+                case "A": {
+                    result.put("5A", count / 5);
+                    count = count % 5;
+                    result.put("3A", count / 3);
+                    result.put("A", count % 3);
+                    break;
+                }
+            }
+            positionsAndCounts.put(sku, count);
+        }
+
         Integer countA = nvl(receipt.get("A"));
         Integer countB = nvl(receipt.get("B"));
         Integer countC = nvl(receipt.get("C"));
         Integer countD = nvl(receipt.get("D"));
         Integer countE = nvl(receipt.get("E"));
         Integer countF = nvl(receipt.get("F"));
+
+        Integer countM = nvl(receipt.get("M"));
+        Integer countN = nvl(receipt.get("N"));
 
         result.put("5A", countA / 5);
         countA = countA % 5;
@@ -111,6 +131,8 @@ public class Checkout {
 
         result.put("3F", countF / 3);
         result.put("F", countF % 3);
+
+        result.put("M", Math.max(0, countM - (countN / 3)));
 
         return result;
     }
