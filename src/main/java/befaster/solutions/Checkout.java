@@ -87,52 +87,74 @@ public class Checkout {
     private static Map<String, Integer> translateReceipt(Map<String, Integer> receipt) {
         Map<String, Integer> result = new HashMap<>();
 
-        String alphabet = "ABCDEFGHIJKLNMOPQRSTUVWXYZ";
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Map<String, Integer> positionsAndCounts = new HashMap<>();
         for (char ch : alphabet.toCharArray()) {
             String sku = String.valueOf(ch);
             int count = nvl(receipt.get(sku));
             switch (sku) {
-                case "A": {
+                case "E":
+                    positionsAndCounts.put("B", Math.max(0, positionsAndCounts.get("B") - (count / 2)));
+                    break;
+                case "N":
+                    positionsAndCounts.put("M", Math.max(0, positionsAndCounts.get("M") - (count / 3)));
+                    break;
+                case "R":
+                    positionsAndCounts.put("Q", Math.max(0, positionsAndCounts.get("Q") - (count / 3)));
+                    break;
+            }
+            positionsAndCounts.put(sku, count);
+        }
+
+        for (String sku : positionsAndCounts.keySet()) {
+            int count = nvl(positionsAndCounts.get(sku));
+            switch (sku) {
+                case "A" :
                     result.put("5A", count / 5);
                     count = count % 5;
                     result.put("3A", count / 3);
                     result.put("A", count % 3);
                     break;
-                }
+                case "B" :
+                    result.put("2B", count / 2);
+                    result.put("B", count % 2);
+                    break;
+                case "F" :
+                    result.put("3F", count / 3);
+                    result.put("F", count % 3);
+                    break;
+                case "H" :
+                    result.put("10H", count / 10);
+                    count = count % 10;
+                    result.put("5H", count / 5);
+                    result.put("H", count % 5);
+                    break;
+                case "K" :
+                    result.put("2K", count / 2);
+                    result.put("K", count % 2);
+                    break;
+                case "P" :
+                    result.put("5P", count / 5);
+                    result.put("P", count % 5);
+                    break;
+                case "Q" :
+                    result.put("3Q", count / 3);
+                    result.put("Q", count % 3);
+                    break;
+                case "U" :
+                    result.put("4U", count / 4);
+                    result.put("U", count % 4);
+                    break;
+                case "V" :
+                    result.put("3V", count / 3);
+                    count = count % 3;
+                    result.put("2V", count / 2);
+                    result.put("V", count % 2);
+                    break;
+                default:
+                    result.put(sku, positionsAndCounts.get(sku));
             }
-            positionsAndCounts.put(sku, count);
         }
-
-        Integer countA = nvl(receipt.get("A"));
-        Integer countB = nvl(receipt.get("B"));
-        Integer countC = nvl(receipt.get("C"));
-        Integer countD = nvl(receipt.get("D"));
-        Integer countE = nvl(receipt.get("E"));
-        Integer countF = nvl(receipt.get("F"));
-
-        Integer countM = nvl(receipt.get("M"));
-        Integer countN = nvl(receipt.get("N"));
-
-        result.put("5A", countA / 5);
-        countA = countA % 5;
-        result.put("3A", countA / 3);
-        result.put("A", countA % 3);
-
-
-        countB = Math.max(0, countB - (countE / 2));
-        result.put("2B", countB / 2);
-        result.put("B", countB % 2);
-
-        result.put("C", countC);
-        result.put("D", countD);
-
-        result.put("E", countE);
-
-        result.put("3F", countF / 3);
-        result.put("F", countF % 3);
-
-        result.put("M", Math.max(0, countM - (countN / 3)));
 
         return result;
     }
