@@ -5,11 +5,11 @@ import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class Checkout1Test {
+public class Checkout2Test {
 
     @Test
     public void negativeTest() {
-        assertThat(Checkout.checkout("ABEAA"), equalTo(-1));
+        assertThat(Checkout.checkout("ABRAA"), equalTo(-1));
         assertThat(Checkout.checkout("a"), equalTo(-1));
     }
 
@@ -21,6 +21,8 @@ public class Checkout1Test {
     @Test
     public void withSpecialOffersTest() {
         assertThat(Checkout.checkout("AAABBB"), equalTo(130 + 45 + 30));
+        assertThat(Checkout.checkout("AAAAAAAAABBB"), equalTo(200 + 130 + 50 + 45 + 30));
+        assertThat(Checkout.checkout("BBBBEEE"), equalTo(45 + 30 + 40*3));
     }
 
     @Test

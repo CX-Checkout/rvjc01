@@ -16,8 +16,10 @@ public class Checkout {
         prices.put("B", 30);
         prices.put("C", 20);
         prices.put("D", 15);
+        prices.put("E", 40);
         //special stocks
         prices.put("3A", 130);
+        prices.put("5A", 200);
         prices.put("2B", 45);
     }
 
@@ -56,15 +58,25 @@ public class Checkout {
         Map<String, Integer> result = new HashMap<>();
 
         Integer countA = nvl(receipt.get("A"));
+        Integer countB = nvl(receipt.get("B"));
+        Integer countC = nvl(receipt.get("C"));
+        Integer countD = nvl(receipt.get("D"));
+        Integer countE = nvl(receipt.get("E"));
+
+        result.put("5A", countA / 5);
+        countA = countA % 5;
         result.put("3A", countA / 3);
         result.put("A", countA % 3);
 
-        Integer countB = nvl(receipt.get("B"));
+
+        countB = Math.max(0, countB - (countE / 2));
         result.put("2B", countB / 2);
         result.put("B", countB % 2);
 
-        result.put("C", nvl(receipt.get("C")));
-        result.put("D", nvl(receipt.get("D")));
+        result.put("C", countC);
+        result.put("D", countD);
+
+        result.put("E", nvl(receipt.get("E")));
 
         return result;
     }
