@@ -17,10 +17,12 @@ public class Checkout {
         prices.put("C", 20);
         prices.put("D", 15);
         prices.put("E", 40);
+        prices.put("F", 10);
         //special stocks
         prices.put("3A", 130);
         prices.put("5A", 200);
         prices.put("2B", 45);
+        prices.put("3F", 20);
     }
 
     public static Integer checkout(String skus) {
