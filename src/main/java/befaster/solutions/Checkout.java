@@ -59,8 +59,8 @@ public class Checkout {
         result.put('A', countA % 3);
 
         Integer countB = receipt.get('B');
-        result.put('b', countA / 2);
-        result.put('B', countA % 2);
+        result.put('b', countB / 2);
+        result.put('B', countB % 2);
 
         result.put('C', receipt.get('C'));
         result.put('D', receipt.get('D'));
